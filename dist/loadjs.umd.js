@@ -1,3 +1,12 @@
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.loadjs = factory();
+  }
+}(this, function() {
 /**
  * Global dependencies.
  * @global {Object} document - DOM
@@ -303,3 +312,5 @@ loadjs.isDefined = function isDefined(bundleId) {
 
 // export
 return loadjs;
+
+}));
