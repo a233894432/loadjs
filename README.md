@@ -16,34 +16,49 @@ LoadJS is based on the excellent [$script](https://github.com/ded/script.js) lib
 
 Here's an example of what you can do with LoadJS:
 
-```javascript
-// define a dependency bundle and execute code when it loads
-loadjs(['/path/to/foo.js', '/path/to/bar.js'], 'foobar');
+```html
+<script src="//unpkg.com/loadjs@latest/dist/loadjs.min.js"></script>
+<script>
+  // define a dependency bundle and execute code when it loads
+  loadjs(['/path/to/foo.js', '/path/to/bar.js'], 'foobar');
 
-loadjs.ready('foobar', function() {
-  /* foo.js & bar.js loaded */
-});
+  loadjs.ready('foobar', function() {
+    /* foo.js & bar.js loaded */
+  });
+</script>
 ```
 
 You can also use more advanced syntax for more options:
-```javascript
-// define a dependency bundle with advanced options
-loadjs(['/path/to/foo.js', '/path/to/bar.js'], 'foobar', {
-  before: function(path, scriptEl) { /* execute code before fetch */ },
-  async: true,  // load files synchronously or asynchronously (default: true)
-  numRetries: 3  // see caveats about using numRetries with async:false (default: 0),
-  returnPromise: false  // return Promise object (default: false)
-});
+```html
+<script src="//unpkg.com/loadjs@latest/dist/loadjs.min.js"></script>
+<script>
+  // define a dependency bundle with advanced options
+  loadjs(['/path/to/foo.js', '/path/to/bar.js'], 'foobar', {
+    before: function(path, scriptEl) { /* execute code before fetch */ },
+    async: true,  // load files synchronously or asynchronously (default: true)
+    numRetries: 3  // see caveats about using numRetries with async:false (default: 0),
+    returnPromise: false  // return Promise object (default: false)
+  });
 
-loadjs.ready('foobar', {
-  success: function() { /* foo.js & bar.js loaded */ },
-  error: function(depsNotFound) { /* foobar bundle load failed */ },
-});
+  loadjs.ready('foobar', {
+    success: function() { /* foo.js & bar.js loaded */ },
+    error: function(depsNotFound) { /* foobar bundle load failed */ },
+  });
+</script>  
 ```
 
 The latest version of LoadJS can be found in the `dist/` directory in this repository:
  * [https://cdn.rawgit.com/muicss/loadjs/4.2.0/dist/loadjs.js](https://cdn.rawgit.com/muicss/loadjs/4.2.0/dist/loadjs.js) (for development)
  * [https://cdn.rawgit.com/muicss/loadjs/4.2.0/dist/loadjs.min.js](https://cdn.rawgit.com/muicss/loadjs/4.2.0/dist/loadjs.min.js) (for production)
+
+It's also available from these public CDNs:
+
+  * UNPKG
+    * [https://unpkg.com/loadjs@4.2.0/dist/loadjs.js](https://unpkg.com/loadjs@4.2.0/dist/loadjs.js) (for development)
+    * [https://unpkg.com/loadjs@4.2.0/dist/loadjs.min.js](https://unpkg.com/loadjs@4.2.0/dist/loadjs.min.js) (for production)
+  * CDNJS
+    * [https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.js](https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.js) (for development)
+    * [https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.min.js](https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.min.js) (for production)
 
 You can also use it as a CJS or AMD module:
 
